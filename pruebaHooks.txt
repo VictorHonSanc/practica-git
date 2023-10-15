@@ -1,0 +1,1 @@
+Comprobamos que el hook funciona con gitleaks
