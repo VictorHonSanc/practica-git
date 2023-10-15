@@ -1,3 +1,4 @@
 #Ignoramos todos los archivos .log
 *.log
 *.env
+compremetedor.env
