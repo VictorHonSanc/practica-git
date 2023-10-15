@@ -1,0 +1,24 @@
+name: GitLeaks Check
+
+on:
+  push:
+    branches:
+      - practica-git # Cambia esto al nombre de tu rama principal
+
+jobs:
+  check:
+    runs-on: kali-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Run GitLeaks
+      run: gitleaks --verbose
+
+    - name: Check for leaks
+      run: |
+        if [[ ${{ steps.RunGitLeaks.outputs.stdout }} != *"0 leaks found"* ]]; then
+          echo "Fugas de información detectadas. El push se cancelará."
+          exit 1
+        fi
